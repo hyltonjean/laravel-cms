@@ -12,7 +12,6 @@
       <thead>
         <th>Name</th>
         <th></th>
-        <th></th>
       </thead>
       <tbody>
         @foreach($categories as $category)
@@ -50,7 +49,9 @@
               </button>
             </div>
             <div class="modal-body">
-              Are you sure you want to delete this category?
+              <p class="text-center text-bold">
+                Are you sure you want to delete this category?
+              </p>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">No, Go back!</button>
