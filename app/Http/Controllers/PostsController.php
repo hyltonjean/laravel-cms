@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Post;
 use Illuminate\Http\Request;
 use App\Http\Requests\Posts\CreatePostsRequest;
+use App\Http\Requests\Posts\UpdatePostsRequest;
+use Illuminate\Support\Facades\Storage;
 
 class PostsController extends Controller
 {
@@ -67,9 +69,9 @@ class PostsController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function edit($id)
+  public function edit(Post $post)
   {
-    //
+    return view('posts.create')->withPost($post);
   }
 
   /**
@@ -79,9 +81,20 @@ class PostsController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request, $id)
+  public function update(UpdatePostsRequest $request, Post $post)
   {
-    //
+    $image = $request->image->store('posts');
+
+    $post->update([
+      'title' => $request->title,
+      'description' => $request->description,
+      'content' => $request->content,
+      'image' => $image
+    ]);
+
+    session()->flash('success', 'Post updated successfully.');
+
+    return redirect(route('posts.index'));
   }
 
   /**
@@ -92,6 +105,29 @@ class PostsController extends Controller
    */
   public function destroy($id)
   {
-    //
+    $post = Post::withTrashed()->where('id', $id)->firstOrFail();
+
+    if ($post->trashed()) {
+      Storage::delete($post->image);
+      $post->forceDelete();
+    } else {
+      $post->delete();
+    }
+
+    session()->flash('success', 'Post deleted successfully.');
+
+    return redirect(route('posts.index'));
+  }
+
+  /**
+   * Remove trashed posts from storage
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function trashed()
+  {
+    $trashed = Post::withTrashed()->whereNotNull('deleted_at')->get();
+
+    return view('posts.index')->withPosts($trashed);
   }
 }
