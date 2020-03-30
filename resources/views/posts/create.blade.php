@@ -29,8 +29,9 @@
       </div>
       <div class="form-group">
         <label for="content">Content</label>
-        <textarea name="content" id="content" cols="5" rows="5"
-          class="@error('content') is-invalid @enderror form-control">{{ isset($post) ? $post->content : "" }}</textarea>
+        <input id="content" type="hidden" name="content" class="@error('content') is-invalid @enderror" value="
+          {{ isset($post) ? $post->content : "" }}">
+        <trix-editor input="content"></trix-editor>
         @error('content')
         <div class="alert alert-danger">{{$message}}</div>
         @enderror
@@ -48,7 +49,7 @@
         <label for="image">Image</label>
         @if(isset($post))
         <div class="container text-center">
-          <img src="{{ asset("storage/$post->image") }}" alt="{{ $post->title }}" class="" width="600px" height="400px">
+          <img src="{{ asset("storage/$post->image") }}" alt="{{ $post->title }}" class="" width="100%">
         </div>
         <br>
         <input type="file" name="image" id="image" class="@error('image') is-invalid @enderror form-control"
@@ -70,4 +71,20 @@
     </form>
   </div>
 </div>
+@endsection
+
+@section('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.1/trix.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+  flatpickr('#published_at', {
+    enableTime: true
+  });
+  
+</script>
+@endsection
+
+@section('css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.1/trix.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 @endsection

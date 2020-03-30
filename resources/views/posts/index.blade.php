@@ -24,7 +24,13 @@
           <td>{{ $post->title }}</td>
           <td>
             <div class="d-flex justify-content-end">
-              @if(!$post->trashed())
+              @if($post->trashed())
+              <form action="{{ route('restore-posts', $post->id) }}" method="POST">
+                @csrf
+                @method('PUT')
+                <button type="submit" class="btn btn-info btn-sm mr-2 text-white">Restore</button>
+              </form>
+              @else
               <a href="{{ route('posts.edit', $post->id) }}" type="button"
                 class="btn btn-info btn-sm mr-2 text-white">Edit</a>
               @endif
