@@ -18,7 +18,7 @@
         @enderror
       </div>
       <div class="form-group">
-        <button type="submit" class="btn btn-success">{{ isset($tag) ? "Edit Tag" : "Add Tag" }}</button>
+        <button type="submit" class="btn btn-success">{{ isset($tag) ? "Update Tag" : "Add Tag" }}</button>
       </div>
     </form>
   </div>

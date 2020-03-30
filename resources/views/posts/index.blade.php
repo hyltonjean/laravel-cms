@@ -14,6 +14,7 @@
         <tr>
           <th>Image</th>
           <th>Title</th>
+          <th>Category</th>
           <th></th>
         </tr>
       </thead>
@@ -22,6 +23,9 @@
         <tr>
           <td><img src="{{ asset("storage/$post->image") }}" alt="{{ $post->title }}" width="60px" height="60px"></td>
           <td>{{ $post->title }}</td>
+          <td>
+            {{ $post->category->name }}
+          </td>
           <td>
             <div class="d-flex justify-content-end">
               @if($post->trashed())

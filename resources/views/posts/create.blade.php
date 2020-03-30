@@ -10,6 +10,7 @@
       @if(isset($post))
       @method('PUT')
       @endif
+
       <div class="form-group">
         <label for="title">Title</label>
         <input type="text" name="title" id="title" class="@error('title') is-invalid @enderror form-control"
@@ -18,6 +19,7 @@
         <div class="alert alert-danger">{{$message}}</div>
         @enderror
       </div>
+
       <div class="form-group">
         <label for="description">Description</label>
         <input type="text" name="description" id="description"
@@ -27,6 +29,7 @@
         <div class="alert alert-danger">{{$message}}</div>
         @enderror
       </div>
+
       <div class="form-group">
         <label for="content">Content</label>
         <input id="content" type="hidden" name="content" class="@error('content') is-invalid @enderror" value="
@@ -36,6 +39,7 @@
         <div class="alert alert-danger">{{$message}}</div>
         @enderror
       </div>
+
       <div class="form-group">
         <label for="published_at">Published_At</label>
         <input type="text" name="published_at" id="published_at"
@@ -45,26 +49,51 @@
         <div class="alert alert-danger">{{$message}}</div>
         @enderror
       </div>
-      <div class="form-group">
+
+      <div class="form-group mt-4">
         <label for="image">Image</label>
         @if(isset($post))
         <div class="container text-center">
           <img src="{{ asset("storage/$post->image") }}" alt="{{ $post->title }}" class="" width="100%">
         </div>
-        <br>
-        <input type="file" name="image" id="image" class="@error('image') is-invalid @enderror form-control"
-          style="padding-top: 0.2rem !important;">
-        @error('image')
-        <div class="alert alert-danger">{{$message}}</div>
-        @enderror
-        @else
-        <input type="file" name="image" id="image" class="@error('image') is-invalid @enderror form-control"
-          style="padding-top: 0.2rem !important;">
-        @error('image')
-        <div class="alert alert-danger">{{$message}}</div>
-        @enderror
         @endif
+        <input type="file" name="image" id="image" class="@error('image') is-invalid @enderror form-control mt-4"
+          style="padding-top: 0.2rem !important;">
+        @error('image')
+        <div class="alert alert-danger">{{$message}}</div>
+        @enderror
       </div>
+
+      <div class="form-group mt-4">
+        <label for="category">Category</label>
+        <select class="form-control tags-selector" name="category" id="category">
+          @foreach($categories as $category)
+          <option value="{{ $category->id }}" @if(isset($post)) @if($category->id === $post->category_id)
+            selected
+            @endif
+            @endif
+            >{{ $category->name }}</option>
+          @endforeach
+        </select>
+      </div>
+
+      @if($tags->count() > 0)
+      <div class="form-group">
+        <label for="tags">Tags</label>
+        <select type="text" name="tags[]" id="tags" class="tags-selector form-control" multiple>
+          @foreach($tags as $tag)
+          <option value="{{ $tag->id }}" @if(isset($post)) @if($post->hasTag($tag->id)))
+            selected
+            @endif
+            @endif
+            >
+            {{ $tag->name }}
+          </option>
+          @endforeach
+        </select>
+      </div>
+      @endif
+
       <div class="form-group">
         <button type="submit" class="btn btn-success">{{ isset($post) ? 'Update Post' : 'Add Post' }}</button>
       </div>
@@ -76,15 +105,20 @@
 @section('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.1/trix.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 <script>
   flatpickr('#published_at', {
     enableTime: true
   });
-  
+
+  $( "document" ).ready(function() {
+    $(".tags-selector").select2();
+  });
 </script>
 @endsection
 
 @section('css')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.1/trix.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css">
 @endsection

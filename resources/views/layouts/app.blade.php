@@ -78,11 +78,8 @@
 
       @auth
       <div class="container">
-        @if(session()->has('success'))
-        <div class="alert alert-success">
-          {{session()->get('success')}}
-        </div>
-        @endif
+        @include('partials.success')
+        @include('partials.errors')
         <div class="row">
           <div class="col-md-4">
             <ul class="list-group">

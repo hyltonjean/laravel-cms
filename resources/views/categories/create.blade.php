@@ -19,7 +19,8 @@
         @enderror
       </div>
       <div class="form-group">
-        <button type="submit" class="btn btn-success">{{ isset($category) ? "Edit Category" : "Add Category" }}</button>
+        <button type="submit"
+          class="btn btn-success">{{ isset($category) ? "Update Category" : "Add Category" }}</button>
       </div>
     </form>
   </div>

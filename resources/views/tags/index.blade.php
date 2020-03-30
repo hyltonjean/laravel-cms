@@ -12,6 +12,7 @@
     <table class="table">
       <thead>
         <th>Name</th>
+        <th>Posts Count</th>
         <th></th>
       </thead>
       <tbody>
@@ -19,6 +20,9 @@
         <tr>
           <td>
             {{$tag->name}}
+          </td>
+          <td>
+            {{ $tag->posts->count() }}
           </td>
           <td>
             <div class="d-flex justify-content-end">
