@@ -5,6 +5,7 @@
   <div class="card-header">Profile</div>
 
   <div class="card-body">
+    @include('partials.errors')
     <form action="{{ route('users.update-profile') }}" method="POST">
       @csrf
       @method('PUT')
