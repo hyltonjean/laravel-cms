@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="d-flex justify-content-end mb-2">
-  <a href="{{route('tags.create')}}" class="btn btn-success">Add Tag</a>
+  <a href="{{route('tags.create')}}" class="btn btn-outline-success">Add Tag</a>
 </div>
 
 <div class="card">
@@ -26,10 +26,10 @@
           </td>
           <td>
             <div class="d-flex justify-content-end">
-              <a href="{{route('tags.edit', $tag->id)}}" class="btn btn-info btn-sm mr-2 text-white">
+              <a href="{{route('tags.edit', $tag->id)}}" class="btn btn-outline-info btn-sm mr-2">
                 Edit
               </a>
-              <button type="submit" class="btn btn-danger btn-sm text-right"
+              <button type="submit" class="btn btn-outline-danger btn-sm text-right"
                 onclick="handleDelete({{ $tag->id }})">Delete</button>
             </div>
           </td>

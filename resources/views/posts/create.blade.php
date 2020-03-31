@@ -95,7 +95,7 @@
       @endif
 
       <div class="form-group">
-        <button type="submit" class="btn btn-success">{{ isset($post) ? 'Update Post' : 'Add Post' }}</button>
+        <button type="submit" class="btn btn-outline-success">{{ isset($post) ? 'Update Post' : 'Add Post' }}</button>
       </div>
     </form>
   </div>

@@ -20,7 +20,7 @@
       </div>
       <div class="form-group">
         <button type="submit"
-          class="btn btn-success">{{ isset($category) ? "Update Category" : "Add Category" }}</button>
+          class="btn btn-outline-success">{{ isset($category) ? "Update Category" : "Add Category" }}</button>
       </div>
     </form>
   </div>

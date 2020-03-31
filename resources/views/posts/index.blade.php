@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="d-flex justify-content-end mb-2">
-  <a href="{{route('posts.create')}}" class="btn btn-success">Add Posts</a>
+  <a href="{{route('posts.create')}}" class="btn btn-outline-success">Add Posts</a>
 </div>
 
 <div class="card">
@@ -21,7 +21,7 @@
       <tbody>
         @foreach($posts as $post)
         <tr>
-          <td><img src="{{ asset("storage/$post->image") }}" alt="{{ $post->title }}" width="60px" height="60px"></td>
+          <td><img src="{{ asset("storage/$post->image") }}" alt="{{ $post->title }}" width="100px" height="60px"></td>
           <td>{{ $post->title }}</td>
           <td>
             {{ $post->category->name }}
@@ -36,12 +36,12 @@
               </form>
               @else
               <a href="{{ route('posts.edit', $post->id) }}" type="button"
-                class="btn btn-info btn-sm mr-2 text-white">Edit</a>
+                class="btn btn-outline-info btn-sm mr-2">Edit</a>
               @endif
               <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-danger btn-sm text-right">
+                <button type="submit" class="btn btn-outline-danger btn-sm text-right">
                   {{ $post->trashed() ? 'Delete' : 'Trash' }}
                 </button>
               </form>
