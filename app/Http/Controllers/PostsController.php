@@ -101,22 +101,30 @@ class PostsController extends Controller
       $image = $request->image->store('posts');
       // delete old one
       $post->deleteImage();
-      // set new image to variable to be updated below
-      $request['image'] = $image;
+      // update attributes
+      $post->update([
+        'title' => $request->title,
+        'description' => $request->description,
+        'content' => $request->content,
+        'image' => $image,
+        'published_at' => $request->published_at,
+        'category_id' => $request->category
+      ]);
     }
 
-    if ($request->tags) {
-      $post->tags()->sync($request->tags);
-    }
-    // update attributes
+    // else update attributes without image
     $post->update([
       'title' => $request->title,
       'description' => $request->description,
       'content' => $request->content,
-      'image' => $image,
       'published_at' => $request->published_at,
       'category_id' => $request->category
     ]);
+
+    if ($request->tags) {
+      $post->tags()->sync($request->tags);
+    }
+
     // flash message
     session()->flash('success', 'Post updated successfully.');
     //redirect user
