@@ -8,7 +8,9 @@
 <div class="card">
   <div class="card-header">Categories</div>
   <div class="card-body">
+
     @if($categories->count() > 0)
+
     <table class="table">
       <thead>
         <th>Name</th>
@@ -16,6 +18,7 @@
         <th></th>
       </thead>
       <tbody>
+
         @foreach($categories as $category)
         <tr>
           <td>
@@ -34,19 +37,24 @@
             </div>
           </td>
         </tr>
+
         @endforeach
       </tbody>
     </table>
+
     @else
+
     <h5 class="text-center">No Categories Yet</h5>
     @endif
 
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
       aria-hidden="true">
       <div class="modal-dialog" role="document">
+
         <form action="" method="POST" id="deleteCategoryForm">
           @csrf
           @method("DELETE")
+
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="deleteModalLabel">
@@ -67,6 +75,7 @@
             </div>
           </div>
         </form>
+
       </div>
     </div>
   </div>
@@ -74,12 +83,14 @@
 @endsection
 
 @section('scripts')
+
 <script>
   function handleDelete(id) {
     let form = document.getElementById('deleteCategoryForm');
     form.action = '/categories/' + id;
     $('#deleteModal').modal('show');
   };
+
 </script>
 
 @endsection
