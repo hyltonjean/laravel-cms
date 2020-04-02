@@ -16,7 +16,8 @@ class VerifyIsAdmin
   public function handle($request, Closure $next)
   {
     if (!auth()->user()->isAdmin()) {
-      return redirect(route('home'));
+      session()->flash('error', "You don't have the appropriate access rights to action this");
+      return redirect('home');
     }
 
     return $next($request);

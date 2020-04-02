@@ -8,6 +8,11 @@ use App\Http\Requests\Categories\UpdateCategoryRequest;
 
 class CategoriesController extends Controller
 {
+  public function __construct()
+  {
+    $this->middleware('admin')->except('index');
+  }
+
   /**
    * Display a listing of the resource.
    *

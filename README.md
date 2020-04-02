@@ -1,2 +1,3 @@
 # TheCmS
-A complete CMS for blogging build with authentication using Laravel 7.
+
+A complete CMS for blogging with authentication build using Laravel 7.

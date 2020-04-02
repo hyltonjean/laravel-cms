@@ -49,7 +49,7 @@
 
             @foreach($post->tags as $tag)
 
-            <a class="badge badge-pill badge-secondary" href="#">
+            <a class="badge badge-pill badge-secondary" href="{{ route('blog.tag', $tag->id) }}">
               {{ $tag->name }}
             </a>
 

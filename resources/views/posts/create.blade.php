@@ -32,9 +32,8 @@
 
       <div class="form-group">
         <label for="content">Content</label>
-        <input id="content" type="hidden" name="content" class="@error('content') is-invalid @enderror" value="
-          {{ isset($post) ? $post->content : "" }}">
-        <trix-editor input="content"></trix-editor>
+        <textarea id="content" name="content" cols="5" rows="5"
+          class="@error('content') is-invalid @enderror form-control">{{ isset($post) ? $post->content : "" }}</textarea>
         @error('content')
         <div class="alert alert-danger">{{$message}}</div>
         @enderror
@@ -104,9 +103,10 @@
 @endsection
 
 @section('scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.1/trix.js"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.1/trix.js"></script> --}}
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
 <script>
   flatpickr('#published_at', {
     enableTime: true,
@@ -116,11 +116,16 @@
   $( "document" ).ready(function() {
     $(".tags-selector").select2();
   });
+
+  $( "document" ).ready(function() {
+    $("#content").summernote();
+  });
 </script>
 @endsection
 
 @section('css')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.1/trix.css">
+{{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.1/trix.css"> --}}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css">
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
 @endsection

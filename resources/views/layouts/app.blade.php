@@ -62,9 +62,6 @@
               </a>
 
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ route('users.edit-profile') }}">
-                  My Profile
-                </a>
                 <a class=" dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                   {{ __('Logout') }}
@@ -97,25 +94,41 @@
 
               @if(auth()->user()->isAdmin())
               <li class="list-group-item">
-                <a href="{{ route('users.index') }}">Users</a>
+                <a href="{{ route('users.index') }}">All Users</a>
+              </li>
+              <li class="list-group-item">
+                <a href="{{ route('users.create') }}">Create User</a>
               </li>
               @endif
 
               <li class="list-group-item">
-                <a href="{{ route('posts.index') }}">Posts</a>
+                <a href="{{ route('posts.index') }}">All Posts</a>
               </li>
 
               <li class="list-group-item">
-                <a href="{{ route('categories.index') }}">Categories</a>
+                <a href="{{ route('posts.create') }}">Create Posts</a>
               </li>
 
               <li class="list-group-item">
-                <a href="{{ route('tags.index') }}">Tags</a>
+                <a href="{{ route('categories.index') }}">All Categories</a>
               </li>
 
-            </ul>
+              <li class="list-group-item">
+                <a href="{{ route('categories.create') }}">Create Categories</a>
+              </li>
 
-            <ul class="list-group mt-5">
+              <li class="list-group-item">
+                <a href="{{ route('tags.index') }}">All Tags</a>
+              </li>
+
+              <li class="list-group-item">
+                <a href="{{ route('tags.create') }}">Create Tags</a>
+              </li>
+
+              <li class="list-group-item">
+                <a href="#">Settings</a>
+              </li>
+
               <li class="list-group-item">
                 <a href="{{ route('trashed-posts.index') }}">Trashed Posts</a>
               </li>

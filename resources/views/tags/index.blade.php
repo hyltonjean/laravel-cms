@@ -1,12 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="d-flex justify-content-end mb-2">
-  <a href="{{route('tags.create')}}" class="btn btn-outline-success">Add Tag</a>
-</div>
 
 <div class="card">
-  <div class="card-header">Tags</div>
+  <div class="card-header bg-secondary text-white text-center ">
+    <h4 class="text-bold mb-0">Tags</h4>
+  </div>
   <div class="card-body">
     @if($tags->count() > 0)
     <table class="table">

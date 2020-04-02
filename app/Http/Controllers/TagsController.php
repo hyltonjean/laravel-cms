@@ -8,6 +8,11 @@ use App\Http\Requests\tags\UpdateTagRequest;
 
 class TagsController extends Controller
 {
+  public function __construct()
+  {
+    $this->middleware('admin')->only(['edit', 'update', 'destroy']);
+  }
+
   /**
    * Display a listing of the resource.
    *
