@@ -18,7 +18,7 @@ class Post extends Model
   ];
 
   protected $fillable = [
-    'title', 'description', 'content', 'image', 'published_at', 'category_id', 'slug'
+    'title', 'description', 'content', 'image', 'published_at', 'category_id', 'slug', 'user_id'
   ];
 
   public function deleteImage()

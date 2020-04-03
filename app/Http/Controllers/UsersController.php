@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\User;
-// use Illuminate\Http\Request;
 use App\Profile;
-use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\Users\UpdateUsersProfile;
+use App\Http\Requests\Users\CreateUsersProfile;
 
 class UsersController extends Controller
 {
@@ -17,20 +15,22 @@ class UsersController extends Controller
 
   public function create()
   {
-    return view('users.create');
+    return view('users.create')->with('user', auth()->user());
   }
 
-  public function store(UpdateUsersProfile $request)
+
+  public function store(CreateUsersProfile $request)
   {
+
     $user = User::create([
       'name' => $request->name,
       'email' => $request->email,
-      'about' => $request->about,
-      'password' => Hash::make('password'),
+      'password' => bcrypt('password')
     ]);
 
     $profile = Profile::create([
-      'user_id' => $user->id
+      'user_id' => $user->id,
+      'avatar' => 'storage/uploads/avatar/blank-avatar.jpg',
     ]);
 
     session()->flash('success', 'User profile has been created successfully.');
@@ -51,7 +51,7 @@ class UsersController extends Controller
 
   public function remove_admin(User $user)
   {
-    $user->role = 'writer';
+    $user->role = 'author';
 
     $user->save();
 

@@ -17,6 +17,7 @@
 
   <!-- Styles -->
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">
 
   @yield('css')
 
@@ -53,15 +54,23 @@
             </li>
             @endif
             @else
+
             <li class="nav-item dropdown">
               <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false" v-pre>
-                <img src="{{ Gravatar::src(Auth::user()->email, 33) }}" style="border-radius:50%;" alt="Gravatar"
-                  class="mr-1">
+                <img src="{{ Gravatar::src(auth()->user()->email) }}" width="35" height="35" style="border-radius:50%;"
+                  alt="Avatar" class="mr-1">
                 {{  Auth::user()->name }} <span class="caret"></span>
               </a>
 
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class=" dropdown-item" href="{{ route('users.profile') }}">My Profile</a>
+
+                @if(auth()->user()->isAdmin())
+                <a class=" dropdown-item" href="{{ route('users.create') }}">Create User</a>
+                <a class=" dropdown-item" href="{{ route('settings.index') }}">Settings</a>
+                @endif
+
                 <a class=" dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                   {{ __('Logout') }}
@@ -84,22 +93,20 @@
       @auth
       <div class="container">
 
-        @include('partials.success')
-
-        @include('partials.errors')
-
         <div class="row">
           <div class="col-md-4">
             <ul class="list-group">
-
+              <li class="list-group-item">
+                <a href="{{ route('dashboard') }}">Dashboard</a>
+              </li>
               @if(auth()->user()->isAdmin())
               <li class="list-group-item">
                 <a href="{{ route('users.index') }}">All Users</a>
               </li>
-              <li class="list-group-item">
-                <a href="{{ route('users.create') }}">Create User</a>
-              </li>
               @endif
+            </ul>
+
+            <ul class="list-group mt-5">
 
               <li class="list-group-item">
                 <a href="{{ route('posts.index') }}">All Posts</a>
@@ -108,7 +115,9 @@
               <li class="list-group-item">
                 <a href="{{ route('posts.create') }}">Create Posts</a>
               </li>
+            </ul>
 
+            <ul class="list-group mt-5">
               <li class="list-group-item">
                 <a href="{{ route('categories.index') }}">All Categories</a>
               </li>
@@ -116,7 +125,9 @@
               <li class="list-group-item">
                 <a href="{{ route('categories.create') }}">Create Categories</a>
               </li>
+            </ul>
 
+            <ul class="list-group mt-5">
               <li class="list-group-item">
                 <a href="{{ route('tags.index') }}">All Tags</a>
               </li>
@@ -124,14 +135,14 @@
               <li class="list-group-item">
                 <a href="{{ route('tags.create') }}">Create Tags</a>
               </li>
+            </ul>
 
-              <li class="list-group-item">
-                <a href="#">Settings</a>
-              </li>
+            <ul class="list-group mt-5">
 
               <li class="list-group-item">
                 <a href="{{ route('trashed-posts.index') }}">Trashed Posts</a>
               </li>
+
             </ul>
 
           </div>
@@ -154,6 +165,25 @@
   </div>
 
   <script src="{{ asset('js/app.js') }}"></script>
+  <script src="{{ asset('js/toastr.min.js') }}"></script>
+
+  <script>
+    @if(Session::has('success'))
+  		toastr.success("{{ Session::get('success') }}");
+    @endif
+
+    @if(Session::has('info'))
+  		toastr.info("{{ Session::get('info') }}");
+    @endif
+
+    @if(Session::has('warning'))
+  		toastr.warning("{{ Session::get('warning') }}");
+    @endif
+
+    @if(Session::has('error'))
+  		toastr.error("{{ Session::get('error') }}");
+    @endif
+  </script>
 
   @yield('scripts')
 

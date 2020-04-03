@@ -37,7 +37,7 @@
               <form action="{{ route('restore-posts', $post->id) }}" method="POST">
                 @csrf
                 @method('PUT')
-                <button type="submit" class="btn btn-info btn-sm mr-2 text-white">Restore</button>
+                <button type="submit" class="btn btn-outline-info btn-sm mr-2">Restore</button>
               </form>
 
               @else

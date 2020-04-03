@@ -10,7 +10,7 @@ class TagsController extends Controller
 {
   public function __construct()
   {
-    $this->middleware('admin')->only(['edit', 'update', 'destroy']);
+    $this->middleware('admin')->except('index');
   }
 
   /**

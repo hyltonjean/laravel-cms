@@ -47,7 +47,10 @@ class PostsController extends Controller
   {
     $image = $request->image->store('posts');
 
+    $user = auth()->user();
+
     $post = Post::create([
+      'user_id' => $user->id,
       'title' => $request->title,
       'description' => $request->description,
       'content' => $request->content,

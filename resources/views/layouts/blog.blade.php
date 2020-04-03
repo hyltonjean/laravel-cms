@@ -33,9 +33,9 @@
         </a>
       </div>
 
-      {{-- @if(!auth()->user()) --}}
+      @if(!auth()->user())
       <a class="btn btn-xs btn-round btn-primary" href="{{ route('login') }}">Login</a>
-      {{-- @endif --}}
+      @endif
     </div>
   </nav><!-- /.navbar -->
 

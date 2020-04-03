@@ -84,6 +84,16 @@ class PostsTableSeeder extends Seeder
       'published_at' => now(),
     ]);
 
+    $author1->profile()->create([
+      'user_id' => $author1->id,
+      'avatar' => 'storage/uploads/avatar/blank-avatar.jpg',
+    ]);
+
+    $author2->profile()->create([
+      'user_id' => $author2->id,
+      'avatar' => 'storage/uploads/avatar/blank-avatar.jpg',
+    ]);
+
     $tag1 = Tag::create([
       'name' => 'job',
       'slug' => $slug

@@ -6,7 +6,9 @@
     <h4 class="text-bold mb-0">Users</h4>
   </div>
   <div class="card-body">
+
     @if($users->count() > 0)
+
     <table class="table">
       <thead>
         <tr>
@@ -20,7 +22,7 @@
         @foreach($users as $user)
         <tr>
           <td>
-            <img src="{{ Gravatar::src($user->email, 40) }}" style="border-radius:50%;">
+            <img src="{{ $user->profile->avatar }}" width="45px" height="45px">
           </td>
           <td>
             {{ $user->name }}
@@ -30,7 +32,7 @@
           </td>
           <td>
             @if(!$user->isAdmin())
-            <form action="{{ route('users.make-admin', $user->id) }}" method="POST">
+            <form action=" {{ route('users.make-admin', $user->id) }}" method="POST">
               @csrf
               <button type="submit" class="btn btn-outline-primary btn-sm">Make admin</button>
             </form>
@@ -46,7 +48,7 @@
       </tbody>
     </table>
     @else
-    <h5 class="text-center">No Users Yet.</h5>
+    <h5 class="text-center">No Users</h5>
     @endif
   </div>
 </div>

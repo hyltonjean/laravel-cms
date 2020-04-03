@@ -53,7 +53,7 @@
         <label for="image">Image</label>
         @if(isset($post))
         <div class="container text-center">
-          <img src="{{ asset("storage/$post->image") }}" alt="{{ $post->title }}" class="" width="100%">
+          <img src="{{ asset("storage/$post->image") }}" alt="{{ $post->title }}" width="100%">
         </div>
         @endif
         <input type="file" name="image" id="image" class="@error('image') is-invalid @enderror form-control mt-4"
@@ -103,10 +103,18 @@
 @endsection
 
 @section('scripts')
-{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.1/trix.js"></script> --}}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
+
+<script>
+  if(session()->has('success')){
+    toastr.success("{{session()->get('success')}}");
+  }
+</script>
+
 <script>
   flatpickr('#published_at', {
     enableTime: true,
@@ -124,7 +132,8 @@
 @endsection
 
 @section('css')
-{{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.1/trix.css"> --}}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css">
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
