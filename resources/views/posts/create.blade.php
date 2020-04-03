@@ -97,7 +97,6 @@
         <button type="submit" class="btn btn-outline-success">{{ isset($post) ? 'Update Post' : 'Add Post' }}</button>
       </div>
     </form>
-
   </div>
 </div>
 @endsection
@@ -117,8 +116,7 @@
 
 <script>
   flatpickr('#published_at', {
-    enableTime: true,
-    enableSeconds: true
+    enableTime: true
   });
 
   $( "document" ).ready(function() {
