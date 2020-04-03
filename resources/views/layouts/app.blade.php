@@ -81,16 +81,12 @@
       @auth
 
       <div class="container">
-
         @include('partials.success')
-
         @include('partials.errors')
-
         <div class="row">
           <div class="col-md-4">
 
             <ul class="list-group">
-
               @if(auth()->user()->isAdmin())
 
               <li class="list-group-item">
@@ -102,10 +98,13 @@
               </li>
 
               @endif
+<<<<<<< HEAD
 
             </ul>
 
             <ul class="list-group mt-5">
+=======
+>>>>>>> e59ed62d56f8b08b3df532e0d2036e9573ecdee7
               <li class="list-group-item">
                 <a href="{{ route('posts.index') }}">All Posts</a>
               </li>
@@ -115,6 +114,7 @@
               <li class="list-group-item">
                 <a href="{{ route('categories.index') }}">All Categories</a>
               </li>
+<<<<<<< HEAD
 
               <li class="list-group-item">
                 <a href="{{ route('categories.create') }}">Create Categories</a>
@@ -132,9 +132,16 @@
                 <a href="#">Settings</a>
               </li>
 
+<<<<<<< HEAD
             </ul>
             <ul class="list-group mt-5">
 
+=======
+=======
+            </ul>
+            <ul class="list-group mt-5">
+>>>>>>> parent of e438b22... Completed with TheCmS app...
+>>>>>>> e59ed62d56f8b08b3df532e0d2036e9573ecdee7
               <li class="list-group-item">
                 <a href="{{ route('trashed-posts.index') }}">Trashed Posts</a>
               </li>
