@@ -43,7 +43,6 @@
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
       aria-hidden="true">
       <div class="modal-dialog" role="document">
-
         <form action="" method="POST" id="deleteTagForm">
           @csrf
           @method("DELETE")
@@ -69,7 +68,6 @@
         </form>
       </div>
     </div>
-
   </div>
 </div>
 @endsection
@@ -82,4 +80,5 @@
     $('#deleteModal').modal('show');
   };
 </script>
+
 @endsection

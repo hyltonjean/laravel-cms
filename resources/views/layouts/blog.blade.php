@@ -27,15 +27,13 @@
       <div class="navbar-left">
         <button class="navbar-toggler" type="button">&#9776;</button>
         <a class="navbar-brand" href="{{ route('welcome') }}">
-          <h4 class="text-white">
-            The<span class="text-bold text-white">CmS</span>
-          </h4>
+          <img class="logo-dark" src="{{ asset('img/logo-dark.png') }}" alt="logo">
+          <img class="logo-light" src="{{ asset('img/logo-light.png') }}" alt="logo">
         </a>
       </div>
 
-      {{-- @if(!auth()->user()) --}}
-      <a class="btn btn-xs btn-round btn-primary" href="{{ route('login') }}">Login</a>
-      {{-- @endif --}}
+      <a class="btn btn-xs btn-outline-dark" href="{{ route('login') }}">Login</a>
+
     </div>
   </nav><!-- /.navbar -->
 
@@ -44,34 +42,34 @@
 
   @yield('content')
 
+
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <div class="row gap-y align-items-center">
 
         <div class="col-6 col-lg-3">
-          <a href="{{ route('welcome') }}">
-            <h4 class="text-dark">
-              The<span class="text-bold text-dark">CmS</span>
-            </h4>
-          </a>
+          <a href="{{ route('welcome') }}"><img src="{{ asset('img/logo-dark.png') }}" alt="logo"></a>
         </div>
 
         <div class="col-6 col-lg-9 text-right order-lg-last">
-          <div class="">
-            <div class="addthis_inline_share_toolbox"></div>
+          <div class="social">
+            <a class="social-facebook" href="https://www.facebook.com/thethemeio"><i class="fa fa-facebook"></i></a>
+            <a class="social-twitter" href="https://twitter.com/thethemeio"><i class="fa fa-twitter"></i></a>
+            <a class="social-instagram" href="https://www.instagram.com/thethemeio/"><i class="fa fa-instagram"></i></a>
+            <a class="social-dribbble" href="https://dribbble.com/thethemeio"><i class="fa fa-dribbble"></i></a>
           </div>
-
         </div>
+
       </div>
+    </div>
   </footer><!-- /.footer -->
 
 
   <!-- Scripts -->
   <script src="{{ asset('js/page.min.js') }}"></script>
   <script src="{{ asset('js/script.js') }}"></script>
-  <script id="dsq-count-scr" src="//cms-x4z1bfnpdm.disqus.com/count.js" async></script>
-  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e84c31d02f51d34"></script>
+
 </body>
 
 </html>

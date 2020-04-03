@@ -17,9 +17,7 @@
 
   <!-- Styles -->
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
   @yield('css')
-
 </head>
 
 <body>
@@ -70,7 +68,6 @@
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                   @csrf
                 </form>
-
               </div>
             </li>
             @endguest
@@ -82,6 +79,7 @@
     <main class="py-4">
 
       @auth
+
       <div class="container">
 
         @include('partials.success')
@@ -90,25 +88,30 @@
 
         <div class="row">
           <div class="col-md-4">
+
             <ul class="list-group">
 
               @if(auth()->user()->isAdmin())
+
               <li class="list-group-item">
                 <a href="{{ route('users.index') }}">All Users</a>
               </li>
+
               <li class="list-group-item">
-                <a href="{{ route('users.create') }}">Create User</a>
+                <a href="#">Create User</a>
               </li>
+
               @endif
 
+            </ul>
+
+            <ul class="list-group mt-5">
               <li class="list-group-item">
                 <a href="{{ route('posts.index') }}">All Posts</a>
               </li>
-
               <li class="list-group-item">
                 <a href="{{ route('posts.create') }}">Create Posts</a>
               </li>
-
               <li class="list-group-item">
                 <a href="{{ route('categories.index') }}">All Categories</a>
               </li>
@@ -129,34 +132,28 @@
                 <a href="#">Settings</a>
               </li>
 
+            </ul>
+            <ul class="list-group mt-5">
+
               <li class="list-group-item">
                 <a href="{{ route('trashed-posts.index') }}">Trashed Posts</a>
               </li>
             </ul>
-
           </div>
-
           <div class="col-md-8">
-
             @yield('content')
-
           </div>
         </div>
       </div>
-
       @else
-
       @yield('content')
-
       @endauth
 
     </main>
   </div>
-
   <script src="{{ asset('js/app.js') }}"></script>
 
   @yield('scripts')
-
 </body>
 
 </html>

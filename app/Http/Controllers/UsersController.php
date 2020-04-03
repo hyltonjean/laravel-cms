@@ -17,7 +17,7 @@ class UsersController extends Controller
 
   public function create()
   {
-    return view('users.create');
+    // return view('users.create');
   }
 
   public function store(UpdateUsersProfile $request)
