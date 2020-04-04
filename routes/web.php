@@ -26,7 +26,7 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/dashboard', 'HomeController@index')->name('dashboard');
   Route::resource('categories', 'CategoriesController');
   Route::resource('posts', 'PostsController');
-  Route::get('posts/{post:slug}/edit', 'PostsController@edit')->name('posts.edit');
+  // Route::get('posts/{post:slug}/edit', 'PostsController@edit')->name('posts.edit');
   Route::resource('tags', 'TagsController');
   Route::get('trashed-posts', 'PostsController@trashed')->name('trashed-posts.index');
   Route::put('restore-posts/{post}', 'PostsController@restore')->name('restore-posts');

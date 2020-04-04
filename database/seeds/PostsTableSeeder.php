@@ -1,10 +1,8 @@
 <?php
 
 use App\Tag;
-use App\Post;
 use App\User;
 use App\Category;
-use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -17,19 +15,17 @@ class PostsTableSeeder extends Seeder
    */
   public function run()
   {
-    $slug = Str::slug('I am a slug', '-');
-
     $cat1 = Category::create([
       'name' => 'marketing',
-      'slug' => $slug
+      'slug' => 'marketing',
     ]);
     $cat2 = Category::create([
       'name' => 'partnership',
-      'slug' => $slug
+      'slug' => 'partnership',
     ]);
     $cat3 = Category::create([
       'name' => 'news',
-      'slug' => $slug
+      'slug' => 'news',
     ]);
 
     $author1 = User::create([
@@ -46,7 +42,7 @@ class PostsTableSeeder extends Seeder
 
     $post1 = $author1->posts()->create([
       'title' => 'We relocated our office to a new designed garage',
-      'slug' => $slug,
+      'slug' => 'we-relocated-our-office-to-a-new-designed-garage',
       'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
       'content' => "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
       'image' => 'posts/1.jpg',
@@ -56,7 +52,7 @@ class PostsTableSeeder extends Seeder
 
     $post2 = $author2->posts()->create([
       'title' => 'Top 5 brilliant content marketing strategies',
-      'slug' => $slug,
+      'slug' => 'top-5-brilliant-content-marketing-strategies',
       'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
       'content' => "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
       'image' => 'posts/2.jpg',
@@ -66,7 +62,7 @@ class PostsTableSeeder extends Seeder
 
     $post3 = $author1->posts()->create([
       'title' => 'Best practices for minimalist design with example',
-      'slug' => $slug,
+      'slug' => 'best-practices-for-minimalist-design-with-example',
       'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
       'content' => "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
       'image' => 'posts/3.jpg',
@@ -76,7 +72,7 @@ class PostsTableSeeder extends Seeder
 
     $post4 = $author2->posts()->create([
       'title' => 'Congratulate and thank to Maryam for joining our team',
-      'slug' => $slug,
+      'slug' => 'congratulate-and-thank-to-maryam-for-joining-our-team',
       'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
       'content' => "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
       'image' => 'posts/4.jpg',
@@ -96,17 +92,17 @@ class PostsTableSeeder extends Seeder
 
     $tag1 = Tag::create([
       'name' => 'job',
-      'slug' => $slug
+      'slug' => 'job',
     ]);
 
     $tag2 = Tag::create([
       'name' => 'customers',
-      'slug' => $slug
+      'slug' => 'customers',
     ]);
 
     $tag3 = Tag::create([
       'name' => 'record',
-      'slug' => $slug
+      'slug' => 'record',
     ]);
 
     $post1->tags()->attach([$tag1->id, $tag3->id]);
