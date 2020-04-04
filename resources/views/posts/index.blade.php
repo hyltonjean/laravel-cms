@@ -28,16 +28,16 @@
           <td>
             <div class="d-flex justify-content-end">
               @if($post->trashed())
-              <form action="{{ route('restore-posts', $post->id) }}" method="POST">
+              <form action="{{route('restore-posts', $post->slug)}}" method="POST">
                 @csrf
                 @method('PUT')
                 <button type="submit" class="btn btn-outline-info btn-sm mr-2">Restore</button>
               </form>
               @else
-              <a href="{{ route('posts.edit', $post->id) }}" type="button"
+              <a href="{{route('posts.edit', $post->slug)}}" type="button"
                 class="btn btn-outline-info btn-sm mr-2">Edit</a>
               @endif
-              <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
+              <form action="{{route('posts.destroy', $post->slug)}}" method="POST">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-outline-danger btn-sm text-right">

@@ -4,7 +4,7 @@
 <div class="card">
   <div class="card-header">{{isset($tag) ? 'Edit Tag' : 'Add Tag'}}</div>
   <div class="card-body">
-    <form action="{{ isset($tag) ? route('tags.update', $tag->id) : route('tags.store') }}" method="POST">
+    <form action="{{ isset($tag) ? route('tags.update', $tag->slug) : route('tags.store') }}" method="POST">
       @if(isset($tag))
       @method('PUT')
       @endif

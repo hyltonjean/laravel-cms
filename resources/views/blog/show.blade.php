@@ -14,8 +14,10 @@
 
         <p class="opacity-70 text-uppercase small ls-1">{{ $post->category->name }}</p>
         <h1 class="display-4 mt-7 mb-8">{{ $post->title }}</h1>
-        <p><span class="opacity-70 mr-1">By</span> <a class="text-white" href="#">{{ $post->user->name }}</a></p>
-        <p><img class="avatar avatar-sm" src="{{ Gravatar::src($post->user->email)}}" alt="..."></p>
+        <p><span class="opacity-70 mr-1">By</span>
+          <h6>{{ $post->user->name }}</h6>
+        </p>
+        <p><img class="avatar avatar-sm" src="{{ Gravatar::src($post->user->email) }}" alt="avatar"></p>
 
       </div>
 
@@ -32,12 +34,6 @@
 @section('content')
 <main class="main-content">
 
-
-  <!--
-  |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
-  | Blog content
-  |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
-  !-->
   <div class="section" id="section-content">
     <div class="container">
       <div class="row">
@@ -47,27 +43,15 @@
 
           <div class="gap-xy-2 mt-6">
             @foreach($post->tags as $tag)
-<<<<<<< HEAD
-
-            <a class="badge badge-pill badge-secondary" href="{{ route('blog.tag', $tag->id) }}">
-=======
-            <a class="badge badge-pill badge-secondary" href="#">
->>>>>>> parent of e438b22... Completed with TheCmS app...
+            <a class="badge badge-pill badge-secondary" href="{{ route('blog.tag', $tag->slug) }}">
               {{ $tag->name }}
             </a>
             @endforeach
           </div>
-
         </div>
       </div>
     </div>
   </div>
-
-  <!--
-  |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
-  | Comments
-  |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
-  !-->
 
 </main>
 @endsection

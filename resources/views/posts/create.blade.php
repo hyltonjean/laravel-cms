@@ -4,7 +4,7 @@
 <div class="card">
   <div class="card-header">{{ isset($post) ? 'Edit Post' : 'Add Post' }}</div>
   <div class="card-body">
-    <form action="{{ isset($post) ? route('posts.update', $post->id) : route('posts.store') }}" method="POST"
+    <form action="{{ isset($post) ? route('posts.update', $post->slug) : route('posts.store') }}" method="POST"
       enctype="multipart/form-data">
       @csrf
       @if(isset($post))
@@ -116,7 +116,8 @@
 
 <script>
   flatpickr('#published_at', {
-    enableTime: true
+    enableTime: true,
+    enableSeconds: true,
   });
 
   $( "document" ).ready(function() {

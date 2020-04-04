@@ -1,7 +1,7 @@
 @extends('layouts.blog')
 
 @section('title')
-<title>TheCmS</title>
+<title>Tag: {{ ucfirst($tag->name) }}</title>
 @endsection
 
 @section('header')
@@ -12,8 +12,7 @@
     <div class="row">
       <div class="col-md-8 mx-auto">
 
-        <h1>Latest Blog Posts</h1>
-        <p class="lead-2 opacity-90 mt-6">Read and get updated on how we do blogging</p>
+        <h1>Tag: {{ ucfirst($tag->name) }}</h1>
 
       </div>
     </div>
@@ -27,7 +26,6 @@
   <div class="section bg-gray">
     <div class="container">
       <div class="row">
-
 
         <div class="col-md-8 col-xl-9">
           <div class="row gap-y">
@@ -52,11 +50,10 @@
             @endforelse
           </div>
 
-          {{ $posts->appends( ['search' => request()->query('search')] )->links() }}
+          {{ $posts->appends([ 'search' => request()->query('search') ])->links() }}
         </div>
 
         @include('partials.sidebar')
-
       </div>
     </div>
   </div>

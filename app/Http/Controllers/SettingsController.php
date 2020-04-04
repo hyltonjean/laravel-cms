@@ -7,11 +7,6 @@ use App\Http\Requests\Settings\UpdateSettingsRequest;
 
 class SettingsController extends Controller
 {
-  public function __construct()
-  {
-    $this->middleware('admin');
-  }
-
   public function index()
   {
     return view('settings.settings')->with('settings', Setting::first());

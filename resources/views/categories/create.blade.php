@@ -4,7 +4,7 @@
 <div class="card">
   <div class="card-header">{{isset($category) ? 'Edit Category' : 'Add Category'}}</div>
   <div class="card-body">
-    <form action="{{ isset($category) ? route('categories.update', $category->id) : route('categories.store') }}"
+    <form action="{{ isset($category) ? route('categories.update', $category->slug) : route('categories.store') }}"
       method="POST">
       @if(isset($category))
       @method('PUT')

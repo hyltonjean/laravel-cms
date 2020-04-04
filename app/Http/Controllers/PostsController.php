@@ -6,6 +6,7 @@ use App\Tag;
 use App\Post;
 // use Illuminate\Http\Request;
 use App\Category;
+use Illuminate\Support\Str;
 use App\Http\Requests\Posts\CreatePostsRequest;
 use App\Http\Requests\Posts\UpdatePostsRequest;
 
@@ -52,6 +53,7 @@ class PostsController extends Controller
     $post = Post::create([
       'user_id' => $user->id,
       'title' => $request->title,
+      'slug' => Str::slug($request->title, '-'),
       'description' => $request->description,
       'content' => $request->content,
       'image' => $image,
@@ -87,7 +89,7 @@ class PostsController extends Controller
    */
   public function edit(Post $post)
   {
-    return view('posts.create')->withPost($post)->with('categories', Category::all())->with('tags', Tag::all());
+    return view('posts.create')->with('post', $post)->with('categories', Category::all())->with('tags', Tag::all());
   }
 
   /**
@@ -108,6 +110,7 @@ class PostsController extends Controller
       // update attributes
       $post->update([
         'title' => $request->title,
+        'slug' => Str::slug($request->title, '-'),
         'description' => $request->description,
         'content' => $request->content,
         'image' => $image,
@@ -119,6 +122,7 @@ class PostsController extends Controller
     // else update attributes without image
     $post->update([
       'title' => $request->title,
+      'slug' => Str::slug($request->title, '-'),
       'description' => $request->description,
       'content' => $request->content,
       'published_at' => $request->published_at,
@@ -141,9 +145,9 @@ class PostsController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function destroy($id)
+  public function destroy($slug)
   {
-    $post = Post::withTrashed()->where('id', $id)->firstOrFail();
+    $post = Post::withTrashed()->where('slug', $slug)->firstOrFail();
 
     if ($post->trashed()) {
       $post->deleteImage();
@@ -174,9 +178,9 @@ class PostsController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function restore($id)
+  public function restore($slug)
   {
-    $post = Post::withTrashed()->where('id', $id)->firstOrFail();
+    $post = Post::withTrashed()->where('slug', $slug)->firstOrFail();
 
     $post->restore();
 

@@ -89,64 +89,65 @@
     <main class="py-4">
 
       @auth
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <ul class="list-group">
+              <li class="list-group-item">
+                <a href="{{ route('dashboard') }}">Dashboard</a>
+              </li>
+              @if(auth()->user()->isAdmin())
+              <li class="list-group-item">
+                <a href="{{ route('users.index') }}">All Users</a>
+              </li>
+              @endif
+            </ul>
 
-      <div class="row">
-        <div class="col-md-4">
-          <ul class="list-group">
-            <li class="list-group-item">
-              <a href="{{ route('dashboard') }}">Dashboard</a>
-            </li>
-            @if(auth()->user()->isAdmin())
-            <li class="list-group-item">
-              <a href="{{ route('users.index') }}">All Users</a>
-            </li>
-            @endif
-          </ul>
+            <ul class="list-group mt-5">
+              <li class="list-group-item">
+                <a href="{{ route('posts.index') }}">All Posts</a>
+              </li>
 
-          <ul class="list-group mt-5">
-            <li class="list-group-item">
-              <a href="{{ route('posts.index') }}">All Posts</a>
-            </li>
+              <li class="list-group-item">
+                <a href="{{ route('posts.create') }}">Create Posts</a>
+              </li>
+            </ul>
 
-            <li class="list-group-item">
-              <a href="{{ route('posts.create') }}">Create Posts</a>
-            </li>
-          </ul>
+            <ul class="list-group mt-5">
+              <li class="list-group-item">
+                <a href="{{ route('categories.index') }}">All Categories</a>
+              </li>
 
-          <ul class="list-group mt-5">
-            <li class="list-group-item">
-              <a href="{{ route('categories.index') }}">All Categories</a>
-            </li>
+              <li class="list-group-item">
+                <a href="{{ route('categories.create') }}">Create Categories</a>
+              </li>
+            </ul>
 
-            <li class="list-group-item">
-              <a href="{{ route('categories.create') }}">Create Categories</a>
-            </li>
-          </ul>
+            <ul class="list-group mt-5">
+              <li class="list-group-item">
+                <a href="{{ route('tags.index') }}">All Tags</a>
+              </li>
 
-          <ul class="list-group mt-5">
-            <li class="list-group-item">
-              <a href="{{ route('tags.index') }}">All Tags</a>
-            </li>
+              <li class="list-group-item">
+                <a href="{{ route('tags.create') }}">Create Tags</a>
+              </li>
+            </ul>
 
-            <li class="list-group-item">
-              <a href="{{ route('tags.create') }}">Create Tags</a>
-            </li>
-          </ul>
+            <ul class="list-group mt-5">
+              <li class="list-group-item">
+                <a href="{{ route('trashed-posts.index') }}">Trashed Posts</a>
+              </li>
 
-          <ul class="list-group mt-5">
-            <li class="list-group-item">
-              <a href="{{ route('trashed-posts.index') }}">Trashed Posts</a>
-            </li>
-
-          </ul>
-        </div>
-        <div class="col-md-8">
-          @yield('content')
+            </ul>
+          </div>
+          <div class="col-md-8">
+            @yield('content')
+          </div>
         </div>
       </div>
+      @else
+      @yield('content')
   </div>
-  @else
-  @yield('content')
   @endauth
 
   </main>

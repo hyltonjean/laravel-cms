@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Tag;
-use App\Category;
 use App\Post;
+use App\Setting;
+use App\Category;
 
 class WelcomeController extends Controller
 {
@@ -13,6 +13,7 @@ class WelcomeController extends Controller
   {
     return view('welcome')->with('categories', Category::all())
       ->with('tags', Tag::all())
-      ->with('posts', POst::all());
+      ->with('posts', Post::published()->searched()->simplePaginate(2))
+      ->with('settings', Setting::first());
   }
 }

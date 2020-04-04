@@ -27,8 +27,7 @@
       <div class="navbar-left">
         <button class="navbar-toggler" type="button">&#9776;</button>
         <a class="navbar-brand" href="{{ route('welcome') }}">
-          <img class="logo-dark" src="{{ asset('img/logo-dark.png') }}" alt="logo">
-          <img class="logo-light" src="{{ asset('img/logo-light.png') }}" alt="logo">
+          <h5 class="text-white">{{ config('app.name', 'Laravel') }}</h5>
         </a>
       </div>
 
@@ -43,24 +42,31 @@
 
   @yield('content')
 
-
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <div class="row gap-y align-items-center">
 
-        <div class="col-6 col-lg-3">
-          <a href="{{ route('welcome') }}"><img src="{{ asset('img/logo-dark.png') }}" alt="logo"></a>
+        <div class="col-3 col-lg-3">
+          <a href="{{ route('welcome') }}">
+            <h5>{{ config('app.name', 'Laravel') }}</h5>
+          </a>
         </div>
 
-        <div class="col-6 col-lg-9 text-right order-lg-last">
-          <div class="social">
-            <a class="social-facebook" href="https://www.facebook.com/thethemeio"><i class="fa fa-facebook"></i></a>
-            <a class="social-twitter" href="https://twitter.com/thethemeio"><i class="fa fa-twitter"></i></a>
-            <a class="social-instagram" href="https://www.instagram.com/thethemeio/"><i class="fa fa-instagram"></i></a>
-            <a class="social-dribbble" href="https://dribbble.com/thethemeio"><i class="fa fa-dribbble"></i></a>
-          </div>
+        <div class="col-3 col-lg-3">
+          <h6>Address: {{ $settings->address}}</h6>
+
         </div>
+
+        <div class="col-3 col-lg-3">
+          <h6>Tel: {{ $settings->contact_number }}</h6>
+          <h6>Email: {{ $settings->contact_email }}</h6>
+        </div>
+
+        <div class="col-3 col-lg-3">
+          <div class="addthis_inline_share_toolbox_nvl3 text-right"></div>
+        </div>
+
 
       </div>
     </div>
@@ -70,6 +76,8 @@
   <!-- Scripts -->
   <script src="{{ asset('js/page.min.js') }}"></script>
   <script src="{{ asset('js/script.js') }}"></script>
+  <!-- Go to www.addthis.com/dashboard to customize your tools -->
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5d7aa4b8a9584fe9"></script>
 
 </body>
 

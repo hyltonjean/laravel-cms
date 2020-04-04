@@ -17,6 +17,11 @@ class Post extends Model
     'title', 'description', 'content', 'image', 'published_at', 'category_id', 'slug', 'user_id'
   ];
 
+  public function getRouteKeyName()
+  {
+    return 'slug';
+  }
+
   public function deleteImage()
   {
     Storage::delete($this->image);
@@ -44,5 +49,21 @@ class Post extends Model
   public function user()
   {
     return $this->belongsTo(User::class);
+  }
+
+  public function scopeSearched($query)
+  {
+    $search = request()->query('search');
+
+    if (!$search) {
+      return $query;
+    } else {
+      return $query->where('title', 'LIKE', "%{$search}%");
+    }
+  }
+
+  public function scopePublished($query)
+  {
+    return $query->where('published_at', '<=', now());
   }
 }
