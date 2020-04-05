@@ -47,7 +47,11 @@
             </div>
             @empty
             <p class="text-center">
+              @if(!$posts)
               No results found for query: <strong>{{ request()->query('search') }}</strong>
+              @else
+              No Posts created yet.
+              @endif
             </p>
             @endforelse
           </div>

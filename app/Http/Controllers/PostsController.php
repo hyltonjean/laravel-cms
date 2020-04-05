@@ -15,7 +15,7 @@ class PostsController extends Controller
 
   public function __construct()
   {
-    $this->middleware('VerifyCategoriesCount')->only(['create', 'store']);
+    $this->middleware('VerifyCategoriesTagsCount')->only(['create', 'store']);
     $this->middleware('admin')->only(['edit', 'update', 'destroy']);
   }
   /**
